@@ -1,4 +1,4 @@
-![福建前端联盟](./src/logo.jpg)
+<img src="./src/logo.jpg" width = "50%" height = "50%" div align=center />
 
 ## 始于 2011 年 5 月 16 日
 
