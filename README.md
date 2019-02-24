@@ -4,16 +4,16 @@
 
 > 有什么问题，想说的请提 issue。
 
-### 第 30 期资料 （2019 年 3 月 2 日）
+### 第 30 期资料 （2019 年 3 月 2 日）
 
 - [火热报名中!!!!!](http://www.huodongxing.com/event/9480910131200)
 
-### 第 29 期资料
+#### 第 29 期资料
 
 - [如何给程序员看病-林朕威](./s29/如何给程序看病.zip)
 
-### 第 28 期资料
+#### 第 28 期资料
 
 - [VUE 开发技巧-林小波](./s28/VUE开发技巧.pptx)
-- [web3D-Guowc](Guowc-web3D.key)
-- [web3D-demo-Guowc](web3D-demo.zip)
+- [web3D-Guowc](./s28/Guowc-web3D.key)
+- [web3D-demo-Guowc](./s28/web3D-demo.zip)
