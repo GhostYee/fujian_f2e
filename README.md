@@ -1,4 +1,4 @@
-<img src="./src/logo.jpg" width = "50%" height = "50%" div align=center />
+<div align="center"><img src="./src/logo.jpg" width = "50%" height = "50%" /></div>
 
 ## 始于 2011 年 5 月 16 日
 
