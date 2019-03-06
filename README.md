@@ -29,3 +29,7 @@
 
 - [RxJS 的异步新世界-demo-雪碧](https://github.com/doodlewind/rx-elevator-demo/)
 - [RxJS 的异步新世界-ppt-雪碧](./s27/rx-intro.pdf)
+
+#### 第 26 期资料
+
+- [前端异常监控-昝涛](./s26/前端异常监控_stefanzan@fundebug.pdf)
