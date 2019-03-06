@@ -8,9 +8,11 @@
 
 请提 issue
 
-### 第 30 期资料
+#### 第 30 期资料
 
-- [hexo 快速搭建博客](./s30/冯超颖hexo.key)
+- [使用 Lerna 拆分 JS 工程-幸运猴子](./s30/使用Lerna拆分JS工程.key)
+- [使用 Lerna 拆分 JS 工程-demo-幸运猴子](./s30/scaffold.zip)
+- [hexo 快速搭建博客-冯超颖](./s30/冯超颖hexo.key)
 
 #### 第 29 期资料
 
@@ -22,3 +24,8 @@
 - [VUE 开发技巧-林小波](./s28/VUE开发技巧.pptx)
 - [web3D-Guowc](./s28/Guowc-web3D.key)
 - [web3D-demo-Guowc](./s28/web3D-demo.zip)
+
+#### 第 27 期资料
+
+- [RxJS 的异步新世界-demo-雪碧](https://github.com/doodlewind/rx-elevator-demo/)
+- [RxJS 的异步新世界-ppt-雪碧](./s27/rx-intro.pdf)
