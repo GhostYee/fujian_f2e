@@ -1,0 +1,420 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=0" name="viewport">
+<title>Coin Dozer</title>
+<style>
+*{margin:0;padding:0}
+html,body{
+  height:100%;
+  overflow:hidden;
+}
+.Game{
+  width:100%;
+}
+.Debug{
+  width:100%;
+  height:100%;
+  position:absolute;
+  top:0;
+}
+.Debug canvas{
+  width:100%;
+}
+</style>
+</head>
+<body>
+<div class="Stage">
+    <canvas class="Game" id="game" width="750" height="1334" style="width"></canvas>
+    <div class="Debug" id="debugger"></div>
+</div>
+<script src="http:f2er.meitu.com/gwc/lib/decomp.js"></script>
+<script src="http:f2er.meitu.com/gwc/lib//createjs.min.js"></script>
+<script src="http:f2er.meitu.com/gwc/lib//matter.min.js"></script>
+<script>
+// 1 - Matterjs, createjs 对象引用
+var Render = Matter.Render
+var World = Matter.World
+var Bodies = Matter.Bodies
+var Body = Matter.Body
+
+// 创建Stage对象（canvas实体）、Loader
+var Stage = new createjs.Stage('game'),
+  Loader = new createjs.LoadQueue()
+
+// 从Matter.Engine实例化一个engine
+var engine = Matter.Engine.create()
+// 获取engine.world对象，物理世界实例
+var world = engine.world
+
+// 设置重力场
+world.gravity.y = 0
+
+// 建一个render（调试用）
+var render = Render.create({
+  element: document.getElementById('debugger'),
+  engine: engine,
+  options: {
+    width: 750,
+    height: 1334,
+    background: 'rgba(0,0,0,0)',
+    wireframes: false
+  }
+})
+
+// 3 - 游戏主函数
+var Game = function () {
+  this.data = {
+    name: 'CoinDozer'
+  }
+  this.coins = []
+}
+Game.prototype = {
+  createStage () {
+    // 7 - 添加静态背景
+    Stage.addChild(new createjs.Bitmap(Loader.getResult('stage')))
+    // 8 - 添加舞台物理边界
+    World.add(world, [
+      Bodies.fromVertices(282, 332, [
+        // 顶点坐标（引入decomp补丁）
+        { x: 0, y: 0 },
+        { x: 0, y: 890 },
+        { x: 140, y: 815 },
+        { x: 208, y: 614 },
+        { x: 548, y: 614 },
+        { x: 612, y: 815 },
+        { x: 750, y: 890 },
+        { x: 750, y: 0 }
+      ], {
+        isStatic: true,
+        render: {
+          opacity: 0.2,
+          fillStyle: 'green'
+        }
+      })
+    ])
+  },
+  createPusher () {
+    // 10 - 创建推板对象（图形对象）
+    this.pusher = new createjs.Bitmap(Loader.getResult('pusher'))
+    // 11 - 设置初始属性
+    this.pusher.width = this.pusher.getBounds().width
+    this.pusher.height = this.pusher.getBounds().height
+    this.pusherMinScale = 0.74
+    this.pusherMaxScale = 0.9
+    this.pusherMinY = 550
+    this.pusherMaxY = 650
+    this.pusher.regX = this.pusher.width / 2
+    this.pusher.regY = this.pusher.height / 2
+    this.pusher.x = Stage.canvas.width / 2
+    this.pusher.y = this.pusherMinY
+    this.pusher.scaleX = this.pusher.scaleY = this.pusherMinScale
+    // 12 - 创建推板刚体（物理对象）
+    this.pusher.body = Bodies.trapezoid(
+      this.pusher.x,
+      this.pusher.y,
+      this.pusher.width,
+      this.pusher.height - 60,
+      0.3,
+      {
+        isStatic: true,
+        render: {
+          opacity: 0.3,
+          fillStyle: 'red'
+        }
+      }
+    )
+
+    // 14 - 创建推板裁剪蒙版
+    var shape = new createjs.Shape()
+    shape.graphics.drawRect(0, 612, 750, 220) // drawRect(x, y, width, height)
+    this.pusher.mask = shape
+
+    // 13 - 图形添加到舞台，刚体添加到物理世界
+    Stage.addChild(this.pusher)
+    World.add(world, this.pusher.body)
+  },
+  createCoiner () {
+    // 16 - 创建金币发射器对象
+    this.coiner = new createjs.Bitmap(Loader.getResult('coiner'))
+    this.coiner.regX = this.coiner.getBounds().width / 2
+    this.coiner.regY = this.coiner.getBounds().height / 2
+    this.coiner.x = 224
+    this.coiner.y = 248
+    Stage.addChild(this.coiner)
+    // 创建左右移动动画
+    createjs.Tween.get(this.coiner, {
+      loop: true
+    }).to({ x: 532}, 3000)
+      .to({ x: 224}, 3000)
+  },
+  createPanel () {
+    // 创建金币，提示容器
+    this.coinPanel = new createjs.Container()
+    this.tipPanel = new createjs.Container()
+    Stage.addChild(this.coinPanel, this.tipPanel)
+  },
+  onEvents () {
+    var pusherY, pusherScale, pusherLastY = this.pusher.y,
+      pusherDir = 1,
+      pusherSpeed = 0.085,
+      t = 0, k = 0
+    Matter.Events.on(engine, 'beforeUpdate', (e) => {
+      t = e.timestamp - k
+      k = e.timestamp // 计算动态帧间隔
+      // 17 - 创建推板上下运动
+      pusherY = pusherDir * pusherSpeed * t
+      this.pusher.y += pusherY
+
+      this.pusher.y >= this.pusherMaxY ? (pusherDir = -1) : (this.pusher.y <= this.pusherMinY) && (pusherDir = 1)
+      // 18 - 推板缩放控制
+      pusherScale = (this.pusherMaxScale - this.pusherMinScale) * ((this.pusher.y - this.pusherMinY) / 100)
+      this.pusher.scaleX = this.pusher.scaleY = this.pusherMinScale + pusherScale
+      // 19 - 绑定推板刚体
+      Body.setPosition(this.pusher.body, {
+        x: this.pusher.x,
+        y: this.pusher.y + pusherScale * 80
+        // y: this.pusher.y
+      })
+
+      // 28 - 金币脱离推板运动
+      var pusherHalfHeight = this.pusher.getBounds().height / 2,
+        pusherDiffY = this.pusher.y - pusherLastY
+      pusherLastY = this.pusher.y
+      for (var i = 0; i < this.coins.length; i++) {
+        var coin = this.coins[i]
+
+        // 实际脱离挡板运动
+        // if (coin.sprite.dropend && coin.sprite.y < coin.sprite.dropY || coin.sprite.pushing) {
+        //   // console.log(this.pusher.y)
+        //   coin.sprite.pushing = true
+        //   if (this.pusher.y < 560 && coin.sprite.y < coin.sprite.dropY + 20) {
+        //     // console.log(coin.sprite.y)
+        //     coin.sprite.y += 0.1 * t
+        //     if (coin.sprite.y > coin.sprite.dropY + 20) {
+        //       var coinBounds = coin.sprite.getBounds(),
+        //         coinR = (coinBounds.width - 30) / 2,
+        //         coinX = coin.sprite.x,
+        //         coinY = coin.sprite.y
+        //       coin.body ? Body.set(coin.body, {
+        //         position: {
+        //           x: coinX,
+        //           y: coinY
+        //         },
+        //         radius: coinR
+        //       }) : (coin.body = Bodies.circle(coinX, coinY, coinR, {
+        //         mass: 0.3,
+        //         frictionAir: 0.2
+        //       }), World.add(world, [coin.body]))
+        //     }
+        //   }
+        // } else {
+        //   coin.sprite.y += pusherY
+        // }
+
+        // 简化脱离挡板运动
+        if (coin.sprite.leave) continue
+        if (coin.sprite.y < this.pusher.y + pusherHalfHeight) {
+          // 29 - 无论推板伸缩，金币y坐标持续增加离开推板
+          coin.sprite.y += Math.abs(pusherDiffY)
+          coin.sprite.scaleX < 0.95 && (coin.sprite.scaleX += 0.002, coin.sprite.scaleY += 0.002)
+        } else {
+          coin.sprite.leave = true
+          // 30 - 离开推板，创建刚体
+          var coinBounds = coin.sprite.getBounds(),
+            coinR = (coinBounds.width - 30) / 2,
+            coinX = coin.sprite.x,
+            coinY = coin.sprite.y
+          coin.body = Bodies.circle(coinX, coinY, coinR)
+          World.add(world, [coin.body])
+        }
+      }
+    })
+
+    // 20 - 绑定点击创建金币事件
+    document.addEventListener('click', this.insertCoin.bind(this), false)
+  },
+  insertCoin () {
+    var type = Utils.getRandom(1, 4)
+    // 21 - 创建一个金币实例
+    var coin = new Coin(type)
+    coin.create()
+    this.coins.push(coin)
+  },
+  init (options) {
+    this.start()
+  },
+  start () {
+    // 6 - 创建舞台（back keynote）
+    this.createStage()
+    // 9 - 创建推板（back keynote）
+    this.createPusher()
+    // 15 - 创建金币发射器
+    this.createCoiner()
+    // 创建金币，TIP容器
+    this.createPanel()
+    // 17 - 监听事件绑定
+    this.onEvents()
+
+    // 4 - 刷新器设置
+    createjs.Ticker.timingMode = createjs.Ticker.RAF
+    createjs.Ticker.addEventListener('tick', function (e) {
+      this.update(e)
+    }.bind(this))
+
+    // 5 - run实例
+    Matter.Engine.run(engine)
+    // Matter.Render.run(render)
+  },
+  update (e) {
+    Stage.update()
+    for (var i = 0; i < this.coins.length; i++) {
+      var coin = this.coins[i]
+      // 31 - 金币刚体与图形对象绑定
+      if (coin.body) {
+        coin.sprite.x = coin.body.position.x
+        coin.sprite.y = coin.body.position.y
+      }
+      // 32 - 金币大于舞台最大高度开始掉落
+      if (coin.sprite.y > coin.maxY) {
+        coin.falling()
+        this.coins.splice(i, 1), i--
+        World.remove(world, [coin.body])
+      }
+    }
+  }
+}
+var game = new Game()
+
+// 22 - 创建金币（back keynote）
+var Coin = function (type) {
+  this.type = type,
+  this.initY =  285,
+  this.maxY = 1000,
+  this.initScale = 0.65,
+  this.init()
+}
+Coin.prototype = {
+  init: function () {
+    // 23 - 创建金币sprite
+    var sheet = {
+      images: [Loader.getResult('coin' + this.type)],
+      frames: {
+        width: 65,
+        height: 57
+      },
+      framerate: 0,
+      animations: {
+        normal: 0,
+        flat: 1,
+      }
+    }
+    var spriteSheet = new createjs.SpriteSheet(sheet)
+    this.sprite = new createjs.Sprite(spriteSheet)
+    // 设置初始属性
+    var bounds = this.sprite.getBounds()
+    this.sprite.regX = bounds.width / 2
+    this.sprite.regY = bounds.height / 2
+    this.sprite.x = game.coiner.x
+    this.sprite.y = this.initY
+    this.sprite.scaleX = this.sprite.scaleY = this.initScale
+    this.sprite.dropend = false
+    this.sprite.pushing = false
+    this.sprite.leave = false
+  },
+  create: function (data) {
+    if (data) {
+      // 24 - 静态创建金币
+      // this.sprite.gotoAndStop('flat')
+      // this.sprite.x = data[0]
+      // this.sprite.y = data[1]
+      // this.sprite.scaleX = this.sprite.scaleY = data[2]
+    } else {
+      // 25 - 动态创建金币
+      var dropY = Utils.getRandom(620, 630)
+      this.sprite.dropY = dropY
+      createjs.Tween.get(this.sprite)
+        .to({
+          y: dropY
+        }, 500, createjs.Ease.bounceOut).call(function () {
+          this.sprite.gotoAndStop('flat')
+          this.sprite.dropend = true
+        }.bind(this))
+    }
+    // 26 - 添加到容器中
+    game.coinPanel.addChild(this.sprite)
+    // 27 - 设置随机zIndex
+    game.coinPanel.setChildIndex(this.sprite, Utils.getRandom(1, game.coinPanel.numChildren - 1))
+  },
+  falling: function () {
+    // 32 - 金币推落瞬间图像变垂直
+    this.sprite.gotoAndStop('normal')
+    // 33 - 金币坠落动画
+    createjs.Tween.get(this.sprite, {
+      override: true
+    }).to({
+      y: 1200,
+      opacity: 0
+    }, 300, createjs.Ease.linear).call(function () {
+      game.coinPanel.removeChild(this.sprite)
+
+      // 34 - 金币掉落结束+1动画
+      var bravo = new createjs.Text('+1', 'bold 36px futura', '#ffffff'),
+        bounds = bravo.getBounds()
+      bravo.regX = bounds.width / 2, bravo.regY = bounds.height / 2
+      bravo.x = this.sprite.x, bravo.y = 1040
+      game.tipPanel.addChild(bravo)
+      createjs.Tween.get(bravo).to({
+        y: bravo.y - 60, alpha: 0
+      }, 600, createjs.Ease.linear).call(function () {
+        game.tipPanel.removeChild(bravo)
+        createjs.Tween.removeTweens(bravo)
+      })
+    }.bind(this))
+  }
+}
+
+// 2 - 加载资源
+function loader () {
+  var manifest = [
+    {
+      id: 'stage',
+      src: 'http://mtapplet.meitudata.com/dozer_bg1.jpg'
+    },
+    {
+      id: 'pusher',
+      src: 'http://mtapplet.meitudata.com/dozer_pusher.png'
+    },
+    {
+      id: 'coiner',
+      src: 'http://mtapplet.meitudata.com/dozer_coiner.png'
+    },
+    {
+      id: 'coin1',
+      src: 'http://mtapplet.meitudata.com/dozer_coin1.png'
+    }, {
+      id: 'coin2',
+      src: 'http://mtapplet.meitudata.com/dozer_coin2.png'
+    }, {
+      id: 'coin3',
+      src: 'http://mtapplet.meitudata.com/dozer_coin3.png'
+    }
+  ]
+  Loader.on('complete', complete, this)
+  Loader.loadManifest(manifest)
+}
+function complete () {
+  game.init()
+}
+loader()
+
+var Utils = {
+  getRandom: function (e, i) {
+    return Math.floor(Math.random() * (i - e) + e)
+  }
+}
+</script>
+</body>
+</html>

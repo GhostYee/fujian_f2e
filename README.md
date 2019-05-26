@@ -6,7 +6,10 @@
 
 ### 第 31 期 分享话题收集中
 
-请提 issue
+- [Any Suite-查理大叔](./s31/AnySuite.pptx)
+- [资源-查理大叔](https://github.com/futurechallenger/any_suite)
+- [聊聊 REACT 组件设计-黄如鑫](./s31/前端分享第31期短分享-聊聊React组件.zip)
+-
 
 #### 第 30 期资料
 
