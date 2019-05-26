@@ -9,7 +9,8 @@
 - [Any Suite-查理大叔](./s31/AnySuite.pptx)
 - [资源-查理大叔](https://github.com/futurechallenger/any_suite)
 - [聊聊 REACT 组件设计-黄如鑫](./s31/前端分享第31期短分享-聊聊React组件.zip)
--
+- [2d 物理下游戏（ppt）-郭伟程](./s31/2d物理游戏-推金币/html5PhysicGame.key)
+- [2d 物理下游戏（源码）-郭伟程](./s31/2d物理游戏-推金币/index.html)
 
 #### 第 30 期资料
 
