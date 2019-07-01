@@ -4,7 +4,9 @@
 
 > 有什么问题，想说的请提 issue。
 
-### 第 31 期 分享话题收集中
+### 第 32 期 8 月 10 日，激情分享
+
+#### 第 31 期资料
 
 - [Any Suite-查理大叔](./s31/AnySuite.pptx)
 - [资源-查理大叔](https://github.com/futurechallenger/any_suite)
