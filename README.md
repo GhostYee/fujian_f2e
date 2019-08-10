@@ -4,7 +4,13 @@
 
 > 有什么问题，想说的请提 issue。
 
-### 第 32 期 8 月 10 日，激情分享
+### 第 32 期资料
+
+- [webpack 从入门到放弃-林平]
+- [react-show-time-二哲](./s32/react-show-time.pdf)
+- [server-renderer-黄振杰](./s32/server-renderer.key)
+- [server-renderer-黄振杰](https://github.com/wokeyi/server-renderer)
+- [AI? - 铭是这个铭]
 
 #### 第 31 期资料
 
