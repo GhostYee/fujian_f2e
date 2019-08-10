@@ -10,7 +10,8 @@
 - [react-show-time-二哲](./s32/react-show-time.pdf)
 - [server-renderer-黄振杰](./s32/server-renderer.key)
 - [server-renderer-黄振杰](https://github.com/wokeyi/server-renderer)
-- [AI? - 铭是这个铭]
+- [AI-pingpong-demo-铭是这个铭](https://github.com/MicleMing/AI-pingpong)
+- [AI-pingpong-ppt-铭是这个铭](./s32/ai-pingpong.key)
 
 #### 第 31 期资料
 
