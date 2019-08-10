@@ -6,7 +6,7 @@
 
 ### 第 32 期资料
 
-- [webpack 从入门到放弃-林平]
+- [webpack 从入门到放弃-林平](./s32/webpack_ppt_and_souce_code.zip)
 - [react-show-time-二哲](./s32/react-show-time.pdf)
 - [server-renderer-黄振杰](./s32/server-renderer.key)
 - [server-renderer-黄振杰](https://github.com/wokeyi/server-renderer)
