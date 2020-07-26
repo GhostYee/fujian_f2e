@@ -4,6 +4,19 @@
 
 > 有什么问题，想说的请提 issue。
 
+#### 第 36 期资料
+
+> 方式：线下 19 人，线上 220 人 <br>
+> 时间：2020/10/18
+
+- [音频视频剪辑编程-林鸣鹤](https://github.com/noahlam/practice-truth/tree/master/video-practice)
+
+  - [稿定视频剪辑]（https://www.gaoding.com/clipper ）
+
+- [webgl 相机模拟原理]
+
+- [0 代码游戏开发新体验-Guowc](./s36/CocosPhysicGameShare.zip)
+
 #### 第 34 期资料
 
 > 方式：线下 7 人，线上 550 人 <br>
