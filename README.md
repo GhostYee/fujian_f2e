@@ -4,6 +4,16 @@
 
 > 有什么问题，想说的请提 issue。
 
+#### 第 37 期资料
+
+> 方式：线下 7 人，线上 260 人 <br>
+> 时间：2021/1/31
+
+- [前端的后端入门-查理大叔](./s37/一学就废之从前端到全栈.pptx)
+
+- [热成像-shadar - 郭凯](https://zhuanlan.zhihu.com/p/344110917?utm_source=wechat_timeline&utm_medium=social&s_r=0)
+  -
+
 #### 第 36 期资料
 
 > 方式：线下 19 人，线上 220 人 <br>
@@ -13,7 +23,7 @@
 
   - [稿定视频剪辑]（https://www.gaoding.com/clipper ）
 
-- [webgl 相机模拟原理]
+- [webgl 相机模拟原理 - 郭凯]
 
 - [0 代码游戏开发新体验-Guowc](./s36/CocosPhysicGameShare.zip)
 
