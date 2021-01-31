@@ -12,7 +12,6 @@
 - [前端的后端入门-查理大叔](./s37/一学就废之从前端到全栈.pptx)
 
 - [热成像-shadar - 郭凯](https://zhuanlan.zhihu.com/p/344110917?utm_source=wechat_timeline&utm_medium=social&s_r=0)
-  -
 
 #### 第 36 期资料
 
