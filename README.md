@@ -1,5 +1,4 @@
-# 福建前端联盟
-<div align="center"><img src="./src/logo.jpg" width = "40%" height = "40%" /></div>
+# <img src="./src/logo.jpg" width = "70%" height = "70%" />
 
 ### ⏳ 始于 2012 年 5 月 16 日
 
