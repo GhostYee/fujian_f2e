@@ -9,7 +9,7 @@
 > 方式：线下 7 人，线上 260 人 <br>
 > 时间：2021/1/31
 
-- [前端的后端入门-查理大叔](./s37/一学就废之从前端到全栈.pptx)
+- [前端的后端入门-查理大叔](/s37/一学就废之从前端到全栈.pptx)
 
 - [热成像-shadar - 郭凯](https://zhuanlan.zhihu.com/p/344110917?utm_source=wechat_timeline&utm_medium=social&s_r=0)
 
@@ -24,54 +24,54 @@
 
 - [webgl 相机模拟原理 - 郭凯]
 
-- [0 代码游戏开发新体验-Guowc](./s36/CocosPhysicGameShare.zip)
+- [0 代码游戏开发新体验-Guowc](/s36/CocosPhysicGameShare.zip)
 
 #### 第 34 期资料
 
 > 方式：线下 7 人，线上 550 人 <br>
 > 时间：2020/05/30
 
-- [微前端-预备篇-鑫祥](./s34/export.zip)
-- [线下话题总结不完全文字版本](./s34/QA.md)
+- [微前端-预备篇-鑫祥](/s34/export.zip)
+- [线下话题总结不完全文字版本](/s34/QA.md)
 
 #### 第 32 期资料
 
 > 报名：49 <br>
 > 时间：2019/08/10
 
-- [webpack 从入门到放弃-林平](./s32/webpack_ppt_and_souce_code.zip)
-- [react-show-time-二哲](./s32/react-show-time.pdf)
-- [server-renderer-黄振杰](./s32/server-renderer.key)
+- [webpack 从入门到放弃-林平](/s32/webpack_ppt_and_souce_code.zip)
+- [react-show-time-二哲](/s32/react-show-time.pdf)
+- [server-renderer-黄振杰](/s32/server-renderer.key)
 - [server-renderer-黄振杰](https://github.com/wokeyi/server-renderer)
 - [AI-pingpong-demo-铭是这个铭](https://github.com/MicleMing/AI-pingpong)
-- [AI-pingpong-ppt-铭是这个铭](./s32/ai-pingpong.key)
+- [AI-pingpong-ppt-铭是这个铭](/s32/ai-pingpong.key)
 
 #### 第 31 期资料
 
 > 报名：26 <br>
 > 时间：2019/05/25
 
-- [Any Suite-查理大叔](./s31/AnySuite.pptx)
+- [Any Suite-查理大叔](/s31/AnySuite.pptx)
 - [资源-查理大叔](https://github.com/futurechallenger/any_suite)
-- [聊聊 REACT 组件设计-黄如鑫](./s31/前端分享第31期短分享-聊聊React组件.zip)
-- [2d 物理下游戏（ppt）-郭伟程](./s31/2d物理游戏-推金币/html5PhysicGame.key)
-- [2d 物理下游戏（源码）-郭伟程](./s31/2d物理游戏-推金币/index.html)
+- [聊聊 REACT 组件设计-黄如鑫](/s31/前端分享第31期短分享-聊聊React组件.zip)
+- [2d 物理下游戏（ppt）-郭伟程](/s31/2d物理游戏-推金币/html5PhysicGame.key)
+- [2d 物理下游戏（源码）-郭伟程](/s31/2d物理游戏-推金币/index.html)
 
 #### 第 30 期资料
 
 > 报名：33 <br>
 > 时间：2019/03/02
 
-- [使用 Lerna 拆分 JS 工程-幸运猴子](./s30/使用Lerna拆分JS工程.key)
-- [使用 Lerna 拆分 JS 工程-demo-幸运猴子](./s30/scaffold.zip)
-- [hexo 快速搭建博客-冯超颖](./s30/冯超颖hexo.key)
+- [使用 Lerna 拆分 JS 工程-幸运猴子](/s30/使用Lerna拆分JS工程.key)
+- [使用 Lerna 拆分 JS 工程-demo-幸运猴子](/s30/scaffold.zip)
+- [hexo 快速搭建博客-冯超颖](/s30/冯超颖hexo.key)
 
 #### 第 29 期资料
 
 > 报名：17 <br>
 > 时间：2018/10/20
 
-- [如何给程序员看病-林朕威](./s29/如何给程序看病.zip)
+- [如何给程序员看病-林朕威](/s29/如何给程序看病.zip)
 - [利用 NodeJS 开发 CLI-linweiwei](https://slides.com/weiweilin/deck-4#/)
 
 #### 第 28 期资料
@@ -79,9 +79,9 @@
 > 报名：29 <br>
 > 时间：2018/09/01
 
-- [VUE 开发技巧-林小波](./s28/VUE开发技巧.pptx)
-- [web3D-Guowc](./s28/Guowc-web3D.key)
-- [web3D-demo-Guowc](./s28/web3D-demo.zip)
+- [VUE 开发技巧-林小波](/s28/VUE开发技巧.pptx)
+- [web3D-Guowc](/s28/Guowc-web3D.key)
+- [web3D-demo-Guowc](/s28/web3D-demo.zip)
 
 #### 第 27 期资料
 
@@ -89,14 +89,14 @@
 > 时间：2018/07/21
 
 - [RxJS 的异步新世界-demo-雪碧](https://github.com/doodlewind/rx-elevator-demo/)
-- [RxJS 的异步新世界-ppt-雪碧](./s27/rx-intro.pdf)
+- [RxJS 的异步新世界-ppt-雪碧](/s27/rx-intro.pdf)
 
 #### 第 26 期资料
 
 > 报名：35 <br>
 > 时间：2018/06/09
 
-- [前端异常监控-昝涛](./s26/前端异常监控_stefanzan@fundebug.pdf)
+- [前端异常监控-昝涛](/s26/前端异常监控_stefanzan@fundebug.pdf)
 - web 复杂交互动画技巧与实践
 - 关于前端的自动化测试
 
